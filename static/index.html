@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Markazi+Text" rel="stylesheet">
+  <title>Unplash API</title>
+  <style media="screen">
+      .loader{
+        margin-top: 100px;
+        text-align: center;
+      }
+    </style>
+    scr
+    <script type="text/javascript">
+     var globalStore = {};
+     var codePenProjectId = 'WKrvGZ';
+      $(document).ready(function(){
+        //document loaded
+        $.when(
+          // Get the HTML
+            $.get("https://codepen.io/raman-ch/pen/"+codePenProjectId+".html", function(html) {
+              globalStore.html = html;
+            }),
+            // Get the CSS
+            $.get("https://codepen.io/raman-ch/pen/"+codePenProjectId+".css", function(css) {
+              globalStore.css = css;
+            }),
+            // Get the JS
+            $.get("https://codepen.io/raman-ch/pen/"+codePenProjectId+".js",function(js){
+              globalStore.js = js;
+            })
+          ).then(function() {
+            // Add Res to page
+            $("body").html(globalStore.html);
+            $("<style />").html(globalStore.css).appendTo("head");
+            $("<script/>").html(globalStore.js).appendTo("body");
+          });
+      });
+    </script>
+</head>
+<body>
+    <div class="loader">
+     <i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+   </div>
+</body>
+</html>

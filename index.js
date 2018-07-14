@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const url = require('url');
 const cache = require('memory-cache');
+const path = require('path');
 
 const PORT = process.env.PORT || 4000
 const UNPLASH_BASE_URL = "https://unsplash.com/napi/photos"
@@ -15,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get("/", (req, res) => {
-  res.send("hello app")
+  res.sendFile(path.join(__dirname + '/static/index.html'));
 })
 
 app.get("/api/*", async function(req, res) {
