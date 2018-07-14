@@ -14,8 +14,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get("/api/*", async function(req, res) {
+app.get("/", (req, res) => {
+  res.send("hello app")
+})
 
+app.get("/api/*", async function(req, res) {
   try {
     const pathname = url.parse(req.url).pathname
     const resArray = pathname.split("/")
