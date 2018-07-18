@@ -1,10 +1,10 @@
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const url = require('url');
 const cache = require('memory-cache');
 const path = require('path');
-
 const PORT = process.env.PORT || 4000
 const UNPLASH_BASE_URL = "https://unsplash.com/napi/photos"
 const falseURL = "https://images.unsplash.com/photo-1445252454112-997778161cbe?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=69f1f22d5f284102e89cbeaf4262d0ff"
@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + '/static/index.html'));
 })
 
-app.get("/api/*", async function(req, res) {
+app.get("/api/*", function(req, res) {
   try {
     const pathname = url.parse(req.url).pathname
     const resArray = pathname.split("/")
